@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Портал Групи{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home:index' %}">Головна</a></li>
+                <li><a href="{% url 'forum:index' %}">Форум</a></li>
+                <li><a href="{% url 'gradebook:index' %}">Щоденник</a></li>
+                <li><a href="{% url 'events:list' %}">Події</a></li>
+                <li><a href="{% url 'surveys:list' %}">Опитування</a></li>
+                <li><a href="{% url 'voting:list' %}">Голосування</a></li>
+                <li><a href="{% url 'announcements:list' %}">Оголошення</a></li>
+                <li><a href="{% url 'materials:list' %}">Матеріали</a></li>
+                <li><a href="{% url 'portfolio:list' %}">Портфоліо</a></li>
+                <li><a href="{% url 'gallery:list' %}">Галерея</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'accounts:profile' %}">Профіль</a></li>
+                    <li><a href="{% url 'accounts:logout' %}">Вихід</a></li>
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Вхід</a></li>
+                    <li><a href="{% url 'accounts:register' %}">Реєстрація</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Портал Групи. Всі права захищені.</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

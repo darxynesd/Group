@@ -1,0 +1,8 @@
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
+# Create your views here.
+
+def index(request):
+    """Головна сторінка порталу"""
+    return render(request, 'home/index.html')

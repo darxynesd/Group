@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Вхід - Портал Групи{% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <h1>Вхід до системи</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Форма входу буде реалізована пізніше -->
+        <p>Форма входу</p>
+    </form>
+</div>
+{% endblock %}

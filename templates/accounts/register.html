@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Реєстрація - Портал Групи{% endblock %}
+
+{% block content %}
+<div class="register-page">
+    <h1>Реєстрація нового користувача</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Форма реєстрації буде реалізована пізніше -->
+        <p>Форма реєстрації</p>
+    </form>
+</div>
+{% endblock %}
