@@ -5,6 +5,33 @@
 {% block content %}
 <div class="materials-page">
     <h1>Матеріали</h1>
-    <p>Список матеріалів</p>
+    <a href="{% url 'materials:categories' %}">⚙️ Категорії</a>
+    <a href="{% url 'materials:create' %}" class="btn">➕ Додати матеріал</a>
+
+    <form method="get" style="margin: 15px 0;">
+        <select name="category">
+            <option value="">Всі розділи</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Фільтр</button>
+    </form>
+
+    <div class="materials-list">
+        {% for material in materials %}
+            <div class="material-card">
+                <h3>{{ material.title }}</h3>
+                <p>{{ material.description }}</p>
+                <p><b>Розділ:</b> {{ material.category.name }}</p>
+
+                <a href="{% url 'materials:detail' material.pk %}">Відкрити</a>
+                <a href="{% url 'materials:edit' material.pk %}">✏️</a>
+                <a href="{% url 'materials:delete' material.pk %}">🗑</a>
+            </div>
+        {% empty %}
+            <p>Матеріалів поки немає</p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

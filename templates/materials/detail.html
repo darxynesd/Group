@@ -1,0 +1,8 @@
+<h2>{{ object.title }}</h2>
+<p>{{ object.description }}</p>
+
+{% if object.material_type == 'file' %}
+  <a href="{{ object.file.url }}" download>📥 Завантажити файл</a>
+{% else %}
+  <a href="{{ object.link }}">🔗 Перейти</a>
+{% endif %}

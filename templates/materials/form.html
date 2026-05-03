@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Матеріал{% endblock %}
+
+{% block content %}
+<div class="materials-form">
+
+    <h1>Додавання / редагування матеріалу</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div>
+            <label>Назва</label>
+            {{ form.title }}
+        </div>
+
+        <div>
+            <label>Опис</label>
+            {{ form.description }}
+        </div>
+
+        <div>
+            <label>Категорія</label>
+            {{ form.category }}
+        </div>
+
+        <div>
+            <label>Тип матеріалу</label>
+            {{ form.material_type }}
+        </div>
+
+        <div>
+            <label>Файл</label>
+            {{ form.file }}
+        </div>
+
+        <div>
+            <label>Посилання</label>
+            {{ form.link }}
+        </div>
+
+        <button type="submit">Зберегти</button>
+    </form>
+
+</div>
+{% endblock %}

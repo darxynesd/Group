@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Категорії</h1>
+
+<a href="{% url 'materials:category_create' %}">➕ Додати категорію</a>
+
+<ul>
+    {% for cat in categories %}
+        <li>{{ cat.name }}</li>
+    {% empty %}
+        <li>Категорій ще немає</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
