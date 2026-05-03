@@ -1,0 +1,23 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Вхід - Портал групи{% endblock %}
+
+{% block content %}
+<div class="login-page widget">
+    <h1>Вхід у систему</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <p>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+            </p>
+        {% endfor %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Увійти</button>
+    </form>
+    <p>Ще не маєте акаунта? <a href="{% url 'accounts:register' %}">Реєстрація</a></p>
+</div>
+{% endblock %}

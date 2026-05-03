@@ -1,26 +1,41 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 
-{% block title %}Головна - Портал Групи{% endblock %}
+{% block title %}Головна - Портал групи{% endblock %}
 
 {% block content %}
 <div class="home-page">
-    <h1>Ласкаво просимо на портал групи!</h1>
-    
-    <section class="info-widgets">
-        <div class="widget">
-            <h2>Інформація про групу</h2>
-            <p>Тут буде інформація про групу...</p>
-        </div>
-        
-        <div class="widget">
-            <h2>Останні новини</h2>
-            <p>Останні новини та оновлення...</p>
-        </div>
-        
-        <div class="widget">
-            <h2>Найближчі події</h2>
-            <p>Календар майбутніх подій...</p>
-        </div>
+    <section class="widget">
+        <h1>{{ group_name }}</h1>
+        <p>{{ group_description }}</p>
+        <p>Поточна роль: <strong>{{ current_role_label }}</strong></p>
+        <p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'accounts:profile' %}">Мій профіль</a> |
+                <a href="{% url 'accounts:logout' %}">Вийти</a>
+            {% else %}
+                <a href="{% url 'accounts:login' %}">Увійти</a> |
+                <a href="{% url 'accounts:register' %}">Зареєструватися</a>
+            {% endif %}
+        </p>
+    </section>
+
+    <section>
+        <article class="widget">
+            <h2>Статистика</h2>
+            <p>Усього користувачів: <strong>{{ total_users }}</strong></p>
+            <p>Модератори: <strong>{{ moderators }}</strong></p>
+            <p>Адміністратори: <strong>{{ admins }}</strong></p>
+        </article>
+    </section>
+
+    <section>
+        {% for widget in widgets %}
+            <article class="widget">
+                <h2>{{ widget.title }}</h2>
+                <p>{{ widget.description }}</p>
+                <a href="{{ widget.url }}">{{ widget.link_text }}</a>
+            </article>
+        {% endfor %}
     </section>
 </div>
 {% endblock %}
